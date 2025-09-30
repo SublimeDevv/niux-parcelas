@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sublime Site",
-  description: "Sitio web oficial de sublimedev aka Juan Diego Mendoza Gutierrez",
+  title: "Parcelas Niux",
+  description: "Sitio de parcelas",
 };
 
 export default function RootLayout({

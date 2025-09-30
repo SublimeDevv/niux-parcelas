@@ -45,7 +45,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             email: credentials.email,
           },
           include: {
-            userRoles: {
+            usersRoles: {
               include: {
                 role: true,
               },
@@ -65,7 +65,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           id: userFound.id,
           name: userFound.userName,
           email: userFound.email,
-          role: userFound.userRoles[0].role.name,
+          role: userFound.usersRoles[0].role.name,
         };
       },
     }),

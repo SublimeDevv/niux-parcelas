@@ -79,10 +79,8 @@ export function Sidebar({
 }: SidebarProps) {
   const handleItemClick = (item: MenuItem) => {
     if (item.href) {
-      // Aquí podrías manejar la navegación
       console.log('Navigating to:', item.href);
     }
-    // En móvil, cerrar el sidebar al hacer clic en un item
     if (window.innerWidth < 768) {
       onClose();
     }

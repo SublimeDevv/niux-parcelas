@@ -8,12 +8,7 @@ import {
 
 export async function POST(request: Request) {
   return withErrorHandling(async () => {
-    const userCount = await prisma.user.count();
-
-    if (userCount > 0) {
-      return ResponseHelper.forbidden("Registration is not allowed.");
-    }
-
+  
     const { firstName, lastName, email, password } = await request.json();
 
     if (!firstName || !lastName || !email || !password) {
@@ -66,14 +61,14 @@ export async function POST(request: Request) {
         },
       });
 
-      await prisma.userRole.create({
+      await prisma.usersRole.create({
         data: {
           userId: user.id,
           roleId: newRole.id,
         },
       });
     } else {
-      await prisma.userRole.create({
+      await prisma.usersRole.create({
         data: {
           userId: user.id,
           roleId: findRole.id,

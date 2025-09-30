@@ -54,7 +54,7 @@ export default function LoginPage() {
         return toast.error(response.message)
       }
       
-      router.push("/")
+      router.push("/dashboard")
 
       toast.success(response.message)
       
