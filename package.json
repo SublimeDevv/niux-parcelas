@@ -22,6 +22,7 @@
     "@radix-ui/react-navigation-menu": "^1.2.13",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-toast": "^1.2.14",
+    "@tanstack/react-query": "^5.90.2",
     "@types/material-ui": "^0.21.18",
     "@types/pg": "^8.15.5",
     "axios": "^1.11.0",
@@ -51,6 +52,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@tanstack/eslint-plugin-query": "^5.91.0",
     "@types/bcrypt": "^6.0.0",
     "@types/css-modules": "^1.0.5",
     "@types/leaflet": "^1.9.20",

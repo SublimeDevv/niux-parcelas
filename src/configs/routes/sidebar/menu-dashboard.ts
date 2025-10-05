@@ -43,21 +43,15 @@ export const defaultMenuItems: MenuItem[] = [
     ]
   },
   {
-    id: "products",
-    label: "Productos",
+    id: "plots",
+    label: "Parcelas",
     icon: Package,
     children: [
       {
-        id: "products-list",
-        label: "Catálogo",
+        id: "plots-list",
+        label: "Lista de Parcelas",
         icon: Package,
-        href: "/products"
-      },
-      {
-        id: "products-inventory",
-        label: "Inventario",
-        icon: BarChart3,
-        href: "/products/inventory"
+        href: "/dashboard/plots/list"
       }
     ]
   },
