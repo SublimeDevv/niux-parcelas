@@ -35,6 +35,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: { label: "Email", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password", placeholder: "*****" },
       },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       async authorize(credentials: any) {
         if (!credentials?.email || !credentials?.password) {
           return null;

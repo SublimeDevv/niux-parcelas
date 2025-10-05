@@ -14,7 +14,7 @@ interface HeaderProps {
 
 export function Header({ 
   onMenuClick, 
-  logo = "SublimeDev", 
+  logo = "Niux Parcelas", 
   userImage = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face",
   userName = "Usuario",
   notificationCount = 0

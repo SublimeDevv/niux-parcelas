@@ -1,25 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { 
-  Home, 
-  Users, 
-  Settings, 
-  FileText, 
-  BarChart3, 
-  ShoppingCart, 
-  Package,
-  CreditCard,
-  UserCircle,
-  Shield,
-  Bell,
-  Calendar,
-  HelpCircle
-} from "lucide-react";
 import { Header } from "./header";
 import { Sidebar } from "./sidebar";
-import { MenuItem } from "@/interfaces";
 import { signOut } from "next-auth/react";
+import { defaultMenuItems } from "@/configs/routes/sidebar/menu-dashboard";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -29,111 +14,6 @@ interface DashboardLayoutProps {
   userImage?: string;
   notificationCount?: number;
 }
-
-const defaultMenuItems: MenuItem[] = [
-  {
-    id: "dashboard",
-    label: "Dashboard",
-    icon: Home,
-    href: "/dashboard"
-  },
-  {
-    id: "users",
-    label: "Usuarios",
-    icon: Users,
-    badge: 5,
-    children: [
-      {
-        id: "users-list",
-        label: "Lista de Usuarios",
-        icon: UserCircle,
-        href: "/users"
-      },
-      {
-        id: "users-roles",
-        label: "Roles y Permisos",
-        icon: Shield,
-        href: "/users/roles"
-      }
-    ]
-  },
-  {
-    id: "products",
-    label: "Productos",
-    icon: Package,
-    children: [
-      {
-        id: "products-list",
-        label: "Catálogo",
-        icon: Package,
-        href: "/products"
-      },
-      {
-        id: "products-inventory",
-        label: "Inventario",
-        icon: BarChart3,
-        href: "/products/inventory"
-      }
-    ]
-  },
-  {
-    id: "orders",
-    label: "Pedidos",
-    icon: ShoppingCart,
-    badge: "12",
-    href: "/orders"
-  },
-  {
-    id: "finance",
-    label: "Finanzas",
-    icon: CreditCard,
-    children: [
-      {
-        id: "finance-overview",
-        label: "Resumen",
-        icon: BarChart3,
-        href: "/finance"
-      },
-      {
-        id: "finance-transactions",
-        label: "Transacciones",
-        icon: CreditCard,
-        href: "/finance/transactions"
-      }
-    ]
-  },
-  {
-    id: "reports",
-    label: "Reportes",
-    icon: FileText,
-    href: "/reports"
-  },
-  {
-    id: "calendar",
-    label: "Calendario",
-    icon: Calendar,
-    href: "/calendar"
-  },
-  {
-    id: "notifications",
-    label: "Notificaciones",
-    icon: Bell,
-    badge: 3,
-    href: "/notifications"
-  },
-  {
-    id: "help",
-    label: "Ayuda",
-    icon: HelpCircle,
-    href: "/help"
-  },
-  {
-    id: "settings",
-    label: "Configuración",
-    icon: Settings,
-    href: "/settings"
-  }
-];
 
 export function DashboardLayout({
   children,
@@ -153,7 +33,7 @@ export function DashboardLayout({
     <div className="min-h-screen bg-background">
       <Header
         onMenuClick={() => setSidebarOpen(true)}
-        logo="SublimeDev"
+        logo="Niux Parcelas"
         userImage={userImage}
         userName={userName}
         notificationCount={notificationCount}

@@ -5,15 +5,13 @@ import { useEffect, useState } from 'react';
 export type Theme = 'light' | 'dark' | 'system';
 
 export function useTheme() {
-  const [theme, setTheme] = useState<Theme>('system');
-  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
-
-  useEffect(() => {
-    const stored = localStorage.getItem('theme') as Theme;
-    if (stored) {
-      setTheme(stored);
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem('theme') as Theme) || 'system';
     }
-  }, []);
+    return 'system';
+  });
+  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
     const root = document.documentElement;

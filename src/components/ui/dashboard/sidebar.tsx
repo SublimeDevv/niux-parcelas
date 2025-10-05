@@ -4,6 +4,7 @@ import * as React from "react";
 import { ChevronDown, ChevronRight, LogOut, Mail, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { MenuItem } from "@/interfaces/MenuItem";
+import { useRouter } from "next/navigation";
 import { SidebarProps, SidebarItemProps } from "@/interfaces/Sidebar";
 
 function SidebarItem({ item, level = 0, isActive = false, onItemClick }: SidebarItemProps) {
@@ -77,9 +78,12 @@ export function Sidebar({
   onLogout,
   className
 }: SidebarProps) {
+  
+  const router = useRouter();
+
   const handleItemClick = (item: MenuItem) => {
     if (item.href) {
-      console.log('Navigating to:', item.href);
+      router.push(item.href);
     }
     if (window.innerWidth < 768) {
       onClose();
