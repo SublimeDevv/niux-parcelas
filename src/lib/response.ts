@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   success: boolean;
   status: number;
   message: string;
@@ -9,7 +9,7 @@ export interface ApiResponse<T = any> {
   timestamp: string;
 }
 
-export interface SuccessResponse<T = any> extends ApiResponse<T> {
+export interface SuccessResponse<T = unknown> extends ApiResponse<T> {
   success: true;
   data: T;
 }
@@ -129,8 +129,8 @@ export const ResponseHelper = {
   usernameExists: () => 
     createErrorResponse(ERROR_MESSAGES.USERNAME_EXISTS, HTTP_STATUS.CONFLICT),
   
-  missingFields: () => 
-    createErrorResponse(ERROR_MESSAGES.MISSING_FIELDS, HTTP_STATUS.BAD_REQUEST),
+  missingFields: (message?: string) => 
+    createErrorResponse(message ||ERROR_MESSAGES.MISSING_FIELDS, HTTP_STATUS.BAD_REQUEST),
   
   invalidFormat: () => 
     createErrorResponse(ERROR_MESSAGES.INVALID_FORMAT, HTTP_STATUS.BAD_REQUEST),
