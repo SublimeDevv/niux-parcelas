@@ -140,15 +140,15 @@ export function Sidebar({
                 <Mail className="h-4 w-4 text-muted-foreground" />
                 <span className="truncate text-sidebar-foreground">{userEmail}</span>
               </div>
-              <div className="text-xs text-muted-foreground pl-6">{userRole}</div>
+              <div className="text-xs text-muted-foreground pl-6">Rol {userRole}</div>
             </div>
             
             <button
               onClick={onLogout}
-              className="w-full flex items-center gap-3 rounded-lg px-3 py-2 text-left text-sm font-medium text-destructive transition-all hover:bg-destructive/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="cursor-pointer w-full flex items-center gap-3 rounded-lg px-3 py-2 text-left text-sm font-medium text-destructive transition-all hover:bg-destructive/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <LogOut className="h-4 w-4" />
-              <span>Cerrar Sesión</span>
+              <span>Cerrar sesión</span>
             </button>
           </div>
         </div>

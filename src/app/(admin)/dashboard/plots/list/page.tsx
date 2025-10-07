@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getListPlot } from "@/modules/plots/services/plotService";
 import { MapPin, Thermometer, Calendar, ChevronLeft, ChevronRight, X } from "lucide-react";
 import Map from "@/components/ui/map";
+import { ErrorLoad, SkeletonGrid } from "@/components";
 
 export default function PlotListPage() {
   const [page, setPage] = useState(0);
@@ -16,33 +17,9 @@ export default function PlotListPage() {
     queryFn: () => getListPlot(itemsPerPage, page * itemsPerPage),
   });
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <div className="text-center space-y-4">
-          <div className="relative w-16 h-16 mx-auto">
-            <div className="absolute top-0 left-0 w-full h-full border-4 border-primary/20 rounded-full"></div>
-            <div className="absolute top-0 left-0 w-full h-full border-4 border-t-primary border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin"></div>
-          </div>
-          <p className="text-sm font-medium text-muted-foreground">Cargando datos...</p>
-        </div>
-      </div>
-    );
-  }
+  if (isLoading) return <SkeletonGrid columns={3} rows={3} gap={6} cardType="default" />
 
-  if (error) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <div className="bg-card border border-border rounded-xl shadow-sm p-8 max-w-md w-full text-center">
-          <div className="w-12 h-12 bg-destructive/10 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span className="text-xl text-destructive">⚠️</span>
-          </div>
-          <h2 className="text-lg font-semibold text-card-foreground mb-2">Error al cargar</h2>
-          <p className="text-sm text-muted-foreground">No se pudieron cargar los datos de temperatura</p>
-        </div>
-      </div>
-    );
-  }
+  if (error) return <ErrorLoad />
 
   const plots = data.data.temperatura || [];
   const hasNextPage = plots.length === itemsPerPage;

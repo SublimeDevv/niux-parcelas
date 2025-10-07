@@ -1,1 +1,1 @@
-export { columns, type User } from "./columns";
+export { columns } from "./columns";

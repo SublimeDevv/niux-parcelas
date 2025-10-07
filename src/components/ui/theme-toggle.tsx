@@ -36,7 +36,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={handleToggle}
-      className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10"
+      className="cursor-pointer inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10"
       title={`Tema actual: ${currentTheme.label}. Cambiar a: ${nextTheme.label}`}
     >
       <Icon className="h-[1.2rem] w-[1.2rem] transition-all" />

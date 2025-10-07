@@ -2,11 +2,11 @@
 
 import { signIn } from "@/auth";
 
-export async function authenticate(formData: any) {
+export async function authenticate(formData) {
   try {
     await signIn("credentials", formData);
     return { success: true, message: "Inicio de sesión exitoso" };
-  } catch (err: any) {
+  } catch (err) {
     if (err.type === "AuthError") {
       return {
         success: false,

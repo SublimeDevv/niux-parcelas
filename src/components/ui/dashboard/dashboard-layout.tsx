@@ -15,12 +15,13 @@ interface DashboardLayoutProps {
   notificationCount?: number;
 }
 
+
 export function DashboardLayout({
   children,
-  userEmail = "juan@sublimedev.com",
-  userRole = "Desarrollador Full Stack",
-  userName = "Juan Diego",
-  userImage = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face",
+  userEmail = "Cargando...",
+  userRole = "Cargando...",
+  userName = "Cargando...",
+  userImage = "https://ui-avatars.com/api/?name="+userName+"&background=0D8ABC&color=fff",
   notificationCount = 3
 }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = React.useState(false);

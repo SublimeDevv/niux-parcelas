@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Parcelas Niux",
+  title: "Niux Parcelas",
   description: "Sitio de parcelas",
 };
 
