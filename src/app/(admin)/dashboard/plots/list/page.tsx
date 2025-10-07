@@ -4,10 +4,18 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getListPlot } from "@/modules/plots/services/plotService";
 import { MapPin, Thermometer, Calendar, ChevronLeft, ChevronRight, X } from "lucide-react";
-import Map from "@/components/ui/map";
+import dynamic from 'next/dynamic';
+import { useMemo } from 'react';
 import { ErrorLoad, SkeletonGrid } from "@/components";
 
 export default function PlotListPage() {
+    const Map = useMemo(() => dynamic(
+    () => import('@/components/ui/map'),
+    { 
+      loading: () => <p>loading</p>,
+      ssr: false
+    }
+  ), [])
   const [page, setPage] = useState(0);
   const [selectedPlot, setSelectedPlot] = useState(null);
   const itemsPerPage = 9;
