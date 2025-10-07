@@ -7,10 +7,18 @@ import { ChartPieLabel } from "@/components/ui/chart/chart-pie-label";
 import { useQuery } from "@tanstack/react-query";
 import { getPlotsDataChart } from "@/modules/plots/services/plotService";
 import { ErrorLoad, SkeletonGrid } from "@/components";
-import MapDashboard from "@/components/ui/map/MapDashboard";
+import dynamic from 'next/dynamic';
+import { useMemo } from 'react';
 import { LayoutGrid, LayoutList, Columns, Grip } from "lucide-react";
 
 export default function DashboardPage() {
+   const MapDashboard = useMemo(() => dynamic(
+    () => import('@/components/ui/map/MapDashboard'),
+    { 
+      loading: () => <p>loading</p>,
+      ssr: false
+    }
+  ), [])
   const [layout, setLayout] = useState("default");
   const [customOrder, setCustomOrder] = useState([0, 1, 2, 3]);
   const [draggedItem, setDraggedItem] = useState(null);

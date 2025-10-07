@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: express
+  template:
+    metadata:
+      labels:
+        app: express
+    spec:
+      containers:
+        - name: express
+          image: elyxium/express-parcelas:latest
+          imagePullPolicy: Always # IMPORTANTE: Siempre pull la última versión
+          ports:
+            - containerPort: 4001
+              protocol: TCP
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: PORT
+              value: "4001"
+            - name: REDIS_URL
+              value: redis://redis:6370
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: express
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    app: express
+  ports:
+    - port: 4001
+      targetPort: 4001
+      nodePort: 30401 # Acceso externo
+      protocol: TCP

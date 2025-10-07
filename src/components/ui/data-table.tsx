@@ -58,7 +58,7 @@ export function DataTable<TData, TValue>({
     manualPagination: true,
     onPaginationChange: setPagination, //update the pagination state when internal APIs mutate the pagination state
     autoResetPageIndex:true,
-    rowCount: data.length,
+    rowCount: data?.length||0,
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
@@ -151,7 +151,7 @@ export function DataTable<TData, TValue>({
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
+              <TableCell colSpan={columns?.length} className="h-24 text-center">
                 No results.
               </TableCell>
             </TableRow>

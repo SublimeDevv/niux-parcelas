@@ -11,6 +11,7 @@ export default function UserListPage() {
     queryKey: ["usersList"],
     queryFn: () => getAllUsers(),
   });
+  console.log(data);
 
   if (isLoading) return <Loading />;
 

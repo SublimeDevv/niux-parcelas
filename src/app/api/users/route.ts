@@ -7,7 +7,7 @@ import bcrypt from "bcrypt";
 
 export async function GET() {
   return withErrorHandling(async () => {
-
+    try {
     const redis = await getRedisClient();
     const cachedUsers = await getCached<User[]>(redis, "usersList");
     if (cachedUsers) {
@@ -49,6 +49,11 @@ export async function GET() {
     await setCached(redis, "usersList", usersListSorted, 3600);
 
     return ResponseHelper.ok(usersListSorted);
+
+     } catch (error) {
+       console.log("Error fetching users:", error);
+       return ResponseHelper.internalError("Failed to fetch users", error);
+    }
   });
 }
 
