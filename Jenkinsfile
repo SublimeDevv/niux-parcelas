@@ -50,7 +50,7 @@ spec:
     stages {    
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Angel-Guxman/niux-parcelas.git', branch: 'main'
+                git url: 'https://github.com/SublimeDevv/niux-parcelas.git', branch: 'main'
             }
         }
         
