@@ -2,9 +2,10 @@ import express from 'express';
 import { createClient } from 'redis';
 
 const client = createClient({ 
-  url: process.env.REDIS_URL || 'redis://localhost:6379'  // Default local para pruebas
+  url: process.env.REDIS_URL || 'redis://:Niux123@40.233.7.206:6379'  // Default local para pruebas
   // En K8s, setea REDIS_URL=redis://redis:6370 en tu Deployment de la app
 });
+  console.log('🔧 Config  url:', client.options.url);
 
 client.on('error', (err) => {
   console.log('🛑 Error de Redis:', err.message || err);
