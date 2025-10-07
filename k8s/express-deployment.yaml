@@ -26,7 +26,7 @@ spec:
             - name: PORT
               value: "4001"
             - name: REDIS_URL
-              value: redis://redis:6370
+              value: redis://:Niux123@40.233.7.206:6379
           resources:
             requests:
               memory: "128Mi"
