@@ -31,14 +31,7 @@ const app = express();
 app.use(express.json());
 
 app.get('/', async (req, res) => {
-  if (!connected) return res.status(500).send('No conectado a Redis.');
-  try {
-    let visitas = parseInt(await client.get('visitas') || '0') + 1;
-    await client.set('visitas', visitas.toString());
-    res.send(`¡Hola! Visitas: ${visitas} (Redis OK) 😎`);
-  } catch (err) {
-    res.status(500).send(`Error: ${err.message}`);
-  }
+  res.send('🌐 API con Redis - OK');
 });
 
 const PORT = process.env.PORT || 4001;
