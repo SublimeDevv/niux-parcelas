@@ -21,21 +21,12 @@ spec:
         io.kompose.service: nextjs
     spec:
       containers:
-        - env:
-            - name: NODE_ENV
-              value: production
-          image: elyxium/frontend-parcelas:latest
           name: nextjs
+          image: elyxium/frontend-parcelas:latest
           ports:
             - containerPort: 3000
               protocol: TCP
-          env:
-            - name: DATABASE_URL
-              value: "postgresql://postgres:fURIYYERdyxYQPtKqKvFqunPcSBVXixg@tramway.proxy.rlwy.net:23083/railway"
-            - name: NEXTAUTH_URL
-              value: "http://localhost:3000"
-            - name: NEXTAUTH_SECRET
-              value: "secreto12"
-            - name: AUTH_SECRET
-              value: "tyiMXD2xSJ1vm+4sEt3BiA81DTUMj8UYmrrLnrf48jQ="
+          envFrom:
+            - secretRef:
+                name: nextjs-secrets
       restartPolicy: Always
