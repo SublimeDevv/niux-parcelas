@@ -1,7 +1,7 @@
 import express from 'express';
-import { createClient } from 'redis';
+//import { createClient } from 'redis';
 
-const client = createClient({ 
+/* const client = createClient({ 
   url: process.env.REDIS_URL || 'redis://:Niux123@40.233.7.206:6379'  // Default local para pruebas
   // En K8s, setea REDIS_URL=redis://redis:6370 en tu Deployment de la app
 });
@@ -26,7 +26,7 @@ async function connectRedis() {
 }
 
 await connectRedis();
-
+ */
 const app = express();
 app.use(express.json());
 
