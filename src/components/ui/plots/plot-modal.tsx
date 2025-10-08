@@ -1,32 +1,31 @@
+// components/plots/plot-modal.tsx
 "use client";
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { PlotForm } from "./plot-form";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { PlotForm } from "@/components/ui/plots/plot-form";
 
 interface PlotModalProps {
   open: boolean;
   onClose: () => void;
-  onSuccess: () => void;
-  plotId?: string | null;
 }
 
-export const PlotModal: React.FC<PlotModalProps> = ({
-  open,
-  onClose,
-  onSuccess,
-  plotId,
-}) => {
-  const isEditing = Boolean(plotId);
-
+export const PlotModal: React.FC<PlotModalProps> = ({ open, onClose }) => {
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent>
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>
-            {isEditing ? "Editar Parcela" : "Crear Parcela"}
-          </DialogTitle>
+          <DialogTitle>Crear Nueva Parcela</DialogTitle>
+          <DialogDescription>
+            Completa la información de la nueva parcela
+          </DialogDescription>
         </DialogHeader>
-        <PlotForm onClose={onClose} onSuccess={onSuccess} plotId={plotId} />
+        <PlotForm onClose={onClose} />
       </DialogContent>
     </Dialog>
   );

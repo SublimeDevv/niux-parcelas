@@ -4,6 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal, Eye, Pencil, Trash2, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,8 +15,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {  InternalPlot } from "@/modules/plots/models/plot";
 
-export const columns = (onEdit: (plotId: string) => void): ColumnDef<InternalPlot>[] => [
-  {
+interface ColumnsOptions {
+  onEdit: (id: string) => void;
+  onDelete: (id: string) => void;
+}
+
+
+export const columns = ({ onEdit, onDelete }: ColumnsOptions): ColumnDef<InternalPlot>[] => [
+{
     id: "select",
     header: ({ table }) => (
       <Checkbox
@@ -70,24 +77,14 @@ export const columns = (onEdit: (plotId: string) => void): ColumnDef<InternalPlo
     header: "Acciones",
     cell: ({ row }) => {
       const plot = row.original;
-
       const handleView = () => {
         console.log("Ver parcela:", plot.id);
       };
 
-      const handleEdit = () => {
-        onEdit(plot.id); // 👈 abrir modal desde PlotClient
-      };
+      const handleEdit = () => onEdit(plot.id);
 
-      const handleDelete = () => {
-        if (confirm(`¿Estás seguro de eliminar la parcela ${plot.id}?`)) {
-          console.log("Eliminar parcela:", plot.id);
-        }
-      };
+       const handleDelete = () => onDelete(plot.id);
 
-      const handleAssignManager = () => {
-        console.log("Asignar responsable a la parcela:", plot.id);
-      };
 
       return (
         <DropdownMenu>
@@ -113,13 +110,13 @@ export const columns = (onEdit: (plotId: string) => void): ColumnDef<InternalPlo
               <Pencil className="h-4 w-4" />
               <span>Editar</span>
             </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={handleAssignManager}
+        {/*     <DropdownMenuItem
+              onClick={handleEdit}
               className="flex items-center gap-2"
             >
               <UserPlus className="h-4 w-4" />
               <span>Asignar responsable</span>
-            </DropdownMenuItem>
+            </DropdownMenuItem> */}
             <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={handleDelete}

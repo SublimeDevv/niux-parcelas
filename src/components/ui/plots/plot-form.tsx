@@ -26,21 +26,15 @@ import { Loader2 } from "lucide-react";
 import { plotSchema, PlotFormData } from "@/modules/plots/schemas/plotSchema";
 import { useCreatePlot } from "@/modules/plots/hooks/usePlots";
 import { useUsers } from "@/modules/users/hooks/useUsers";
-import {  PlotUpdateData } from "@/modules/plots/schemas/plotSchema";
-import {  useUpdatePlot, usePlot } from "@/modules/plots/hooks/usePlots";
-import { useEffect } from "react";
 
 interface PlotFormProps {
   onClose: () => void;
-    onSuccess: () => void;
-  plotId?: string | null;
 }
-export const PlotForm: React.FC<PlotFormProps> = ({ onClose, onSuccess, plotId }) => {
+
+export const PlotForm: React.FC<PlotFormProps> = ({ onClose }) => {
   const createPlot = useCreatePlot();
-  const isEditing = Boolean(plotId);
-  const updatePlot = useUpdatePlot();
   const { data: usersData, isLoading: isLoadingUsers } = useUsers();
-  const { data: plotData } = usePlot(plotId ?? "");
+
   const form = useForm<PlotFormData>({
     resolver: zodResolver(plotSchema),
     defaultValues: {
@@ -52,20 +46,6 @@ export const PlotForm: React.FC<PlotFormProps> = ({ onClose, onSuccess, plotId }
       managerId: undefined,
     },
   });
-
-   useEffect(() => {
-    if (isEditing && plotData?.data) {
-      const p = plotData.data;
-      form.reset({
-        latitude: Number(p.latitude),
-        longitude: Number(p.longitude),
-        temperature: p.temperature,
-        unit: p.unit,
-        status: !!p.status,
-        managerId: p.plotManagers?.[0]?.user.id,
-      });
-    }
-  }, [isEditing, plotData, form]);
 
   const onSubmit = async (data: PlotFormData) => {
     // Transformar "none" a undefined antes de enviar
