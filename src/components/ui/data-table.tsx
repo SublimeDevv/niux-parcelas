@@ -12,6 +12,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
+import { Table as ITable } from "@tanstack/react-table"
 
 import {
   Table,
@@ -22,7 +23,6 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import {
     DropdownMenu,
     DropdownMenuCheckboxItem,
@@ -33,11 +33,13 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+   Filters?: (props: { table: ITable<TData> }) => React.ReactNode
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  Filters
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
@@ -77,15 +79,7 @@ export function DataTable<TData, TValue>({
   return (
     <div className="">
          <div className="flex items-center py-4">
-        <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-        
+     {Filters && <Filters table={table} />}
            <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">

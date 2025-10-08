@@ -1,4 +1,4 @@
-import { Home, Users, Package, UserCircle, Shield } from "lucide-react";
+import { Home, Users, Package, UserCircle, Shield, ClipboardList } from "lucide-react";
 import { MenuItem } from "@/interfaces/MenuItem";
 
 export const defaultMenuItems: MenuItem[] = [
@@ -34,9 +34,15 @@ export const defaultMenuItems: MenuItem[] = [
     children: [
       {
         id: "plots-list",
-        label: "Lista de Parcelas",
+        label: "Monitoreo de Parcelas",
         icon: Package,
         href: "/dashboard/plots/list",
+      },
+      {
+        id: "plots-crud",
+        label: "Gestión de Parcelas",
+        icon: ClipboardList,
+        href: "/dashboard/plots",
       },
     ],
   },
