@@ -1,5 +1,6 @@
 "use client";
 
+import { Loading } from "@/components";
 import { PlotClient } from "@/components/ui/plots/plot-client";
 import { usePlots } from "@/modules/plots/hooks/usePlots";
 
@@ -7,13 +8,7 @@ const PlotsPage = () => {
   const { data, isLoading, isError } = usePlots();
   console.log(data);
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <p className="text-muted-foreground">Cargando parcelas...</p>
-      </div>
-    );
-  }
+  if (isLoading) return <Loading />;
 
   if (isError || !data) {
     console.error("Error loading plots:", isError);
