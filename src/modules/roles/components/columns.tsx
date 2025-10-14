@@ -73,7 +73,6 @@ export const columns = ({ onEdit, onDelete }: ColumnsOptions): ColumnDef<Interna
       const role = row.original;
       
       const handleView = () => {
-        console.log("Ver rol:", role.id);
       };
 
       const handleEdit = () => onEdit(role.id);

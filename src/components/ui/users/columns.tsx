@@ -45,19 +45,13 @@ export const columns: ColumnDef<User>[] = [
       const user = row.original;
 
       const handleView = () => {
-        // Implementar lógica para ver detalles del usuario
-        console.log("Ver usuario:", user.id);
       };
 
       const handleEdit = () => {
-        // Implementar lógica para editar usuario
-        console.log("Editar usuario:", user.id);
       };
 
       const handleDelete = () => {
-        // Implementar lógica para eliminar usuario
         if (confirm(`¿Estás seguro de eliminar al usuario ${user.name}?`)) {
-          console.log("Eliminar usuario:", user.id);
         }
       };
 

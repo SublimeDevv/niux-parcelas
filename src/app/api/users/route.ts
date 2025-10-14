@@ -51,7 +51,6 @@ export async function GET() {
     return ResponseHelper.ok(usersListSorted);
 
      } catch (error) {
-       console.log("Error fetching users:", error);
        return ResponseHelper.internalError("Failed to fetch users", error);
     }
   });

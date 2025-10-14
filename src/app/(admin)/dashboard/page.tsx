@@ -146,10 +146,10 @@ export default function DashboardPage() {
                 onDragStart={(e) => handleDragStart(e, index)}
                 onDragOver={handleDragOver}
                 onDrop={(e) => handleDrop(e, index)}
-                className="w-full cursor-move border-2 border-transparent hover:border-blue-300 rounded-lg transition-colors relative group"
+                className="w-full cursor-move border-2 border-transparent hover:border-primary/50 rounded-lg transition-colors relative group"
               >
-                <div className="absolute top-2 right-2 z-10 bg-white rounded p-2 shadow-md opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Grip className="w-5 h-5 text-gray-500" />
+                <div className="absolute top-2 right-2 z-10 bg-card border border-border rounded p-2 shadow-md opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Grip className="w-5 h-5 text-muted-foreground" />
                 </div>
                 {charts[chartIndex].component}
               </div>
@@ -179,8 +179,8 @@ export default function DashboardPage() {
           onClick={() => setLayout("default")}
           className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
             layout === "default"
-              ? "bg-blue-600 text-white"
-              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              ? "bg-primary text-primary-foreground"
+              : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
           }`}
         >
           <LayoutList className="w-4 h-4" />
@@ -191,8 +191,8 @@ export default function DashboardPage() {
           onClick={() => setLayout("grid")}
           className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
             layout === "grid"
-              ? "bg-blue-600 text-white"
-              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              ? "bg-primary text-primary-foreground"
+              : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
           }`}
         >
           <LayoutGrid className="w-4 h-4" />
@@ -203,8 +203,8 @@ export default function DashboardPage() {
           onClick={() => setLayout("sidebar")}
           className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
             layout === "sidebar"
-              ? "bg-blue-600 text-white"
-              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              ? "bg-primary text-primary-foreground"
+              : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
           }`}
         >
           <Columns className="w-4 h-4" />
@@ -215,8 +215,8 @@ export default function DashboardPage() {
           onClick={() => setLayout("custom")}
           className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
             layout === "custom"
-              ? "bg-blue-600 text-white"
-              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              ? "bg-primary text-primary-foreground"
+              : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
           }`}
         >
           <Grip className="w-4 h-4" />

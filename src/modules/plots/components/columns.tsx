@@ -78,7 +78,6 @@ export const columns = ({ onEdit, onDelete }: ColumnsOptions): ColumnDef<Interna
     cell: ({ row }) => {
       const plot = row.original;
       const handleView = () => {
-        console.log("Ver parcela:", plot.id);
       };
 
       const handleEdit = () => onEdit(plot.id);

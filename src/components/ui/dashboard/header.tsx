@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Menu } from "lucide-react";
+import { Menu, Map } from "lucide-react";
 import { ThemeToggle } from "../theme-toggle";
 import { useMemo } from "react";
 
@@ -41,7 +41,14 @@ export function Header({
           )}
           
           {typeof logo === 'string' ? (
-            <h1 className="text-xl font-bold text-primary">{logo}</h1>
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center transform hover:rotate-12 transition-transform duration-300">
+                <Map className="w-5 h-5 text-primary-foreground" />
+              </div>
+              <span className="text-xl font-bold text-foreground tracking-tight">
+                Niux<span className="text-chart-1">Parcelas</span>
+              </span>
+            </div>
           ) : (
             logo
           )}

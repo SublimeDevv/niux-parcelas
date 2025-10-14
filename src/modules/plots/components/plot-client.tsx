@@ -29,7 +29,6 @@ export const PlotClient: React.FC<PlotClientProps> = ({ data }) => {
   };
 
     const handleEdit = (id: string) => {
-    console.log("handleEdit", id);
     setSelectedPlotId(id);
     setIsEditModalOpen(true);
   };

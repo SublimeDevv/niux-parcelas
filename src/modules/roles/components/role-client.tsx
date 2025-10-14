@@ -27,7 +27,6 @@ export const RoleClient: React.FC<RoleClientProps> = ({ data }) => {
   };
 
   const handleEdit = (id: string) => {
-    console.log("handleEdit", id);
     setSelectedRoleId(id);
     setIsEditModalOpen(true);
   };

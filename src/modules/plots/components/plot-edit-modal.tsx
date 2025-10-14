@@ -34,8 +34,6 @@ export const PlotEditModal: React.FC<PlotEditModalProps> = ({
 
   // Cuando se cargan los datos, llenar el formulario
   useEffect(() => {
-    console.log("se eejcuta");
-    console.log("plotData", plotData);
     if (plotData?.data) {
       const { temperature, unit, latitude, longitude, status, manager } = plotData.data;
       setFormData({

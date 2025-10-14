@@ -5,6 +5,7 @@ interface User {
   email: string;
   createdAt: Date;
   updatedAt: Date;
+  rol?: string;
 }
 
 export default User;

@@ -6,7 +6,6 @@ import { usePlots } from "@/modules/plots/hooks/usePlots";
 
 const PlotsPage = () => {
   const { data, isLoading, isError } = usePlots();
-  console.log(data);
 
   if (isLoading) return <Loading />;
 
