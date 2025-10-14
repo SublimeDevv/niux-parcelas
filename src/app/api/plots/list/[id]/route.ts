@@ -5,11 +5,12 @@ import { plotService } from "@/modules/plots/services/plotService";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   return withErrorHandling(async () => {
+    const { id } = await params;
     const plot = await plotService.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         plotManagers: {
           include: {
@@ -24,12 +25,13 @@ export async function GET(
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   return withErrorHandling(async () => {
+    const { id } = await params;
     const body = await request.json();
     const plot = await plotService.update({
-      where: { id: params.id },
+      where: { id },
       data: body,
     });
     return ResponseHelper.ok(plot);
@@ -38,10 +40,11 @@ export async function PUT(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   return withErrorHandling(async () => {
-    const plot = await plotService.delete({ where: { id: params.id } });
+    const { id } = await params;
+    const plot = await plotService.delete({ where: { id } });
     return ResponseHelper.ok(plot);
   });
 }

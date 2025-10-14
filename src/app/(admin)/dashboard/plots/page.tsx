@@ -1,7 +1,7 @@
 "use client";
 
 import { Loading } from "@/components";
-import { PlotClient } from "@/components/ui/plots/plot-client";
+import { PlotClient } from "@/modules/plots/components/plot-client";
 import { usePlots } from "@/modules/plots/hooks/usePlots";
 
 const PlotsPage = () => {

@@ -1,4 +1,14 @@
-export default function ErrorLoad() {
+interface ErrorLoadProps {
+  error?: string;
+  title?: string;
+  description?: string;
+}
+
+export default function ErrorLoad({ 
+  error, 
+  title = "Error al cargar", 
+  description = "No se pudieron cargar los datos" 
+}: ErrorLoadProps) {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="bg-card border border-border rounded-xl shadow-sm p-8 max-w-md w-full text-center">
@@ -6,10 +16,10 @@ export default function ErrorLoad() {
           <span className="text-xl text-destructive">⚠️</span>
         </div>
         <h2 className="text-lg font-semibold text-card-foreground mb-2">
-          Error al cargar
+          {title}
         </h2>
         <p className="text-sm text-muted-foreground">
-          No se pudieron cargar los datos de temperatura
+          {error || description}
         </p>
       </div>
     </div>

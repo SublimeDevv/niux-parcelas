@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { PlotForm } from "@/components/ui/plots/plot-form";
+import { PlotForm } from "@/modules/plots/components/plot-form";
 
 interface PlotModalProps {
   open: boolean;

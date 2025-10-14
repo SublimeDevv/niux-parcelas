@@ -4,12 +4,12 @@ import { useState } from "react";
 import { DataTable } from "@/components/ui/data-table";
 import { Separator } from "@/components/ui/separator";
 import { Filters } from "@/components/ui/filters";
-import { columns} from "@/components/ui/plots/columns";
-import { PlotModal } from "@/components/ui/plots/plot-modal";
+import { columns} from "@/modules/plots/components/columns";
+import { PlotModal } from "@/modules/plots/components/plot-modal";
 import { Heading } from "@/components/ui/heading";
 import { useRouter } from "next/navigation";
 import { InternalPlot} from "@/modules/plots/models/plot";
-import { PlotEditModal } from "@/components/ui/plots/plot-edit-modal";
+import { PlotEditModal } from "@/modules/plots/components/plot-edit-modal";
 import { ConfirmDeleteModal } from "./confirm-delete-modal";
 interface PlotClientProps {
   data: InternalPlot[];

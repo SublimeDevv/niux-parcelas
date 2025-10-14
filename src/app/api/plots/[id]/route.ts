@@ -3,9 +3,10 @@ import { db } from "@/lib/db";
 import { ResponseHelper, withErrorHandling } from "@/lib/response";
 import { plotSchema } from "@/modules/plots/schemas/plotSchema";
 
-export const GET = withErrorHandling(async (_request: Request, { params }: { params: { id: string } }) => {
+export const GET = withErrorHandling(async (_request: Request, { params }: { params: Promise<{ id: string }> }) => {
+    const { id } = await params;
     const plot = await db.plot.findUniqueOrThrow({
-        where: { id: params.id, isDeleted: false },
+        where: { id, isDeleted: false },
         include: {
             plotManagers: {
                 include: {
@@ -23,13 +24,14 @@ export const GET = withErrorHandling(async (_request: Request, { params }: { par
     return ResponseHelper.ok(plot);
 });
 
-export const PUT = withErrorHandling(async (request: Request, { params }: { params: { id: string } }) => {
+export const PUT = withErrorHandling(async (request: Request, { params }: { params: Promise<{ id: string }> }) => {
+    const { id } = await params;
     const body = await request.json();
     const { status, latitude, longitude, managerId } = plotSchema.parse(body);
 
     const updatedPlot = await db.$transaction(async (prisma) => {
         const plot = await prisma.plot.update({
-            where: { id: params.id },
+            where: { id },
             data: {
                 status,
                 latitude,
@@ -39,11 +41,11 @@ export const PUT = withErrorHandling(async (request: Request, { params }: { para
 
         if (managerId) {
             await prisma.plotManager.deleteMany({
-                where: { plotId: params.id }
+                where: { plotId: id }
             });
             await prisma.plotManager.create({
                 data: {
-                    plotId: params.id,
+                    plotId: id,
                     userId: managerId
                 }
             });
@@ -55,9 +57,10 @@ export const PUT = withErrorHandling(async (request: Request, { params }: { para
     return ResponseHelper.ok(updatedPlot);
 });
 
-export const DELETE = withErrorHandling(async (_request: Request, { params }: { params: { id: string } }) => {
+export const DELETE = withErrorHandling(async (_request: Request, { params }: { params: Promise<{ id: string }> }) => {
+    const { id } = await params;
     await db.plot.update({
-        where: { id: params.id },
+        where: { id },
         data: {
             isDeleted: true,
             deletedAt: new Date()

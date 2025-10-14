@@ -15,13 +15,13 @@ export const defaultMenuItems: MenuItem[] = [
     children: [
       {
         id: "users-list",
-        label: "Lista de Usuarios",
+        label: "Lista de usuarios",
         icon: UserCircle,
         href: "/dashboard/users/list",
       },
       {
         id: "users-roles",
-        label: "Roles y Permisos",
+        label: "Roles",
         icon: Shield,
         href: "/dashboard/users/roles",
       },
@@ -34,13 +34,13 @@ export const defaultMenuItems: MenuItem[] = [
     children: [
       {
         id: "plots-list",
-        label: "Monitoreo de Parcelas",
+        label: "Monitoreo de parcelas",
         icon: Package,
         href: "/dashboard/plots/list",
       },
       {
         id: "plots-crud",
-        label: "Gestión de Parcelas",
+        label: "Gestión de parcelas",
         icon: ClipboardList,
         href: "/dashboard/plots",
       },

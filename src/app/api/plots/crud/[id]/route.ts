@@ -4,12 +4,12 @@ import { ResponseHelper } from "@/lib/response";
 import { plotUpdateSchema } from "@/modules/plots/schemas/plotSchema";
 
 export const GET = 
-  async (request: Request, { params }: { params: { id: string } }) => {
+  async (request: Request, { params }: { params: Promise<{ id: string }> }) => {
     try {
         
-  
+    const { id } = await params;
     const plot = await prisma.plot.findUnique({
-      where: { id: params.id, isDeleted: false },
+      where: { id, isDeleted: false },
       include: {
         plotManagers: {
           include: {
@@ -38,16 +38,16 @@ export const GET =
 ;
 
 export const PATCH = 
-async (request: Request, { params }: { params: { id: string } }) => {
+async (request: Request, { params }: { params: Promise<{ id: string }> }) => {
     try {
         
-  
+    const { id } = await params;
     const body = await request.json();
     const data = plotUpdateSchema.parse(body);
 
     const updatedPlot = await prisma.$transaction(async (tx) => {
       const plot = await tx.plot.update({
-        where: { id: params.id, isDeleted: false },
+        where: { id, isDeleted: false },
         data: {
           ...(data.status !== undefined && { status: data.status }),
           ...(data.temperature !== undefined && { temperature: data.temperature }),
@@ -61,14 +61,14 @@ async (request: Request, { params }: { params: { id: string } }) => {
       if (data.managerId !== undefined) {
         // Eliminar relaciones anteriores
         await tx.plotManager.deleteMany({
-          where: { plotId: params.id },
+          where: { plotId: id },
         });
 
         // Crear nueva relación si hay managerId
         if (data.managerId) {
           await tx.plotManager.create({
             data: {
-              plotId: params.id,
+              plotId: id,
               userId: data.managerId,
             },
           });
@@ -87,12 +87,12 @@ async (request: Request, { params }: { params: { id: string } }) => {
 ;
 
 export const DELETE =
-  async (request: Request, { params }: { params: { id: string } }) => {
+  async (request: Request, { params }: { params: Promise<{ id: string }> }) => {
     try {
         
-   
+    const { id } = await params;
     await prisma.plot.update({
-      where: { id: params.id },
+      where: { id },
       data: { isDeleted: true },
     });
 
